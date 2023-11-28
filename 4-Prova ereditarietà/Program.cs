@@ -1,74 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _4_Prova_ereditarietà
+namespace _4____Prova_ereditarietà
 {
-    using System;
-
     class Quadrato
     {
-        private double lato;
-
+        protected double _lato;
         public Quadrato(double lato)
         {
-            this.lato = lato;
-            Console.WriteLine($"Creato un quadrato con lato {this.lato}");
+            this._lato = lato;
         }
-
-        public double GetLato()
+        public void perimetro()
         {
-            return this.lato;
+            Console.WriteLine("Il perimetro è di: " + _lato * 4);
         }
-
-        public void SetLato(double lato)
+        public void area()
         {
-            this.lato = lato;
-        }
-
-        public double CalcolaArea()
-        {
-            return Math.Pow(this.lato, 2);
-        }
-
-        public double CalcolaPerimetro()
-        {
-            return 4 * this.lato;
+            Console.WriteLine("L'area è di: " + _lato * _lato);
         }
     }
-
     class Cubo : Quadrato
     {
         public Cubo(double lato) : base(lato)
         {
-            Console.WriteLine($"Creato un cubo con lato {this.GetLato()}");
+            _lato = lato;
         }
-
-        public double CalcolaSuperficieTotale()
+        public void superficie()
         {
-            return 6 * this.CalcolaArea();
+            Console.WriteLine("La superficie è di: " + _lato * _lato * 6);
         }
-
-        public double CalcolaVolume()
+        public void volume()
         {
-            return Math.Pow(this.GetLato(), 3);
+            Console.WriteLine("Il volume è di: " + _lato * _lato * _lato);
         }
     }
-
-    class Program
+    internal class program
     {
-        static void Main()
+        static void Main(string[] args)
         {
-            // Esempio di utilizzo delle classi
-            Quadrato quadrato1 = new Quadrato(5);
-            Console.WriteLine($"Area del quadrato: {quadrato1.CalcolaArea()}");
+            Console.WriteLine("Inserisci la lunghezza del lato");
+            double latoo = double.Parse(Console.ReadLine());
+            Quadrato quadrato = new Quadrato(latoo);
+            Cubo cubo = new Cubo(latoo);
+            quadrato.perimetro();
+            quadrato.area();
+            cubo.superficie();
+            cubo.volume();
 
-            Cubo cubo1 = new Cubo(3);
-            Console.WriteLine($"Superficie totale del cubo: {cubo1.CalcolaSuperficieTotale()}");
-            Console.WriteLine($"Volume del cubo: {cubo1.CalcolaVolume()}");
         }
     }
-
 }
